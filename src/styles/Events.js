@@ -6,11 +6,12 @@ const Styles =  StyleSheet.create({
     image:{
 
        height:200,
-       width:390,
+       width:340,
        marginTop:-30,
        borderRadius:25,
-       marginBottom:20
-
+       marginBottom:20,
+       marginLeft:5,
+       marginRight:5
     },
     notFoundText:{
 
@@ -22,12 +23,9 @@ const Styles =  StyleSheet.create({
         marginBottom:50
 
     },
-    footer:{
-        backgroundColor:'white',
-        height:120,
-    },
     plus:{
-        marginLeft:250
+        marginRight:15,
+        marginBottom:15
     },
     content:{
 
@@ -122,6 +120,31 @@ const Styles =  StyleSheet.create({
         justifyContent:'center',
         borderRadius:15
     },
+    error:{
+        marginTop:7,
+        padding:10,
+        marginLeft:5,
+        borderRadius:300,
+        width:330,
+      },
+      errorText:{
+        color:'red',
+        fontWeight:'700',
+        fontSize:16
+      },
+      serverError:{
+        marginTop:25,
+        alignSelf:'center',
+        marginRight:25
+        
+      },
+      spinner:{
+        alignSelf:'center',
+        marginTop:60
+      },
+      flatlist:{
+          padding:5   
+      }
 
    
 

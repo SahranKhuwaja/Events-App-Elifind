@@ -16,7 +16,7 @@ const NavSetup = () => {
     useEffect(() => {
         async function session() {
 
-            const request = await axios.get('http://192.168.8.101:3000/User/Profile');
+            const request = await axios.get('http://192.168.8.100:3000/User/Profile');
             setStatus(await request.data);
             setLoading(false)
         }
