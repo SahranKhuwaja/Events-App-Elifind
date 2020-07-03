@@ -228,10 +228,10 @@ export default class Registration extends Component {
   submitForm = async()=>{
     
     this.setLoading()
-    const request = await axios.post('http://192.168.8.100:3000/User/Signup',this.state.user);
+    const request = await axios.post('https://events-app-elifind.herokuapp.com/User/Signup',this.state.user);
     await this.setLoading();
-    if(request.data.user){
-      this.props.navigation.navigate('DRAWERCONTAINER',{user:request.data.user});
+    if(request.data.user!==undefined){
+      this.props.navigation.navigate('TABCONTAINER',{user:request.data.user});
     }else{
       this.setState({
         serverError:request.data.error

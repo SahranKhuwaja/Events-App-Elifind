@@ -3,6 +3,7 @@ import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navi
 import { Icon, Thumbnail, Text, view, View } from 'native-base';
 import { ImageBackground } from 'react-native';
 import styles from '../../styles/DrawerNavigator';
+import axios from 'axios';
 
 const DrawerCustomContent = (props) => {
 
@@ -24,9 +25,11 @@ const DrawerCustomContent = (props) => {
         </View>
       </ImageBackground>
       <DrawerItemList {...props} />
-      <DrawerItem label="Logout" icon={() => <Icon name="sign-out-alt" type="FontAwesome5" style={styles.icon2}></Icon>} style={styles.item} />
+      <DrawerItem onPress={props.state.routes[0].params.setStatus} label="Logout" icon={() => <Icon name="sign-out-alt" type="FontAwesome5" style={styles.icon2}></Icon>} style={styles.item}
+       />
     </DrawerContentScrollView>
   );
 }
+
 
 export default DrawerCustomContent;

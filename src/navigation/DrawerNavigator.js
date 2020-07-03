@@ -7,10 +7,14 @@ import Settings from '../components/screens/Settings';
 import { Icon } from 'native-base';
 import styles from '../styles/DrawerNavigator';
 import DrawerCustomContent from '../components/sub-screens/DrawerCustomContent';
+import { YellowBox } from 'react-native';
 
 const NavSetup = (props) => {
-
+    
     const { Screen, Navigator } = createDrawerNavigator();
+    YellowBox.ignoreWarnings([
+        'Non-serializable values were found in the navigation state',
+      ]);
     return (
 
         <Navigator initialRouteName="Profile" drawerContentOptions={{
@@ -22,11 +26,11 @@ const NavSetup = (props) => {
             <Screen name='Profile' component={Profile} options={{
                 drawerIcon: () => <Icon name="person"
                     style={styles.icon}></Icon>
-            }} initialParams={{ user: props.user }} />
+            }} initialParams={{ user: props.user, setStatus:props.setStatus}} />
             <Screen name='My Events' component={Events} options={{
                 drawerIcon: () => <Icon name="calendar"
                     style={styles.icon}></Icon>
-            }} initialParams={{ user: props.user }} ></Screen>
+            }} initialParams={{user:props.user }} ></Screen>
 
             <Screen name='Settings' component={Settings} options={{
                 drawerIcon: () => <Icon name="cog" type="FontAwesome5"
@@ -42,10 +46,9 @@ const NavSetup = (props) => {
 
 
 const DrawerContainer = (props) => {
-
     return (
         <NavigationContainer independent={true}>
-            <NavSetup user={props.user} />
+            <NavSetup setStatus={props.setStatus} user={props.user}/>
         </NavigationContainer>
     )
 

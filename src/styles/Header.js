@@ -2,10 +2,10 @@ import {StyleSheet} from 'react-native';
 
 const Styles = StyleSheet.create({
     header:{
-        backgroundColor:'darkblue'
+        backgroundColor:'white'
     },
     headerIcon:{
-        color:'white',
+        color:'darkblue',
         
     },
     headerBody:{
@@ -13,9 +13,15 @@ const Styles = StyleSheet.create({
        
     },
     headerTitle:{
-        color:'white',
+        color:'darkblue',
+        alignSelf:'auto'
         
     },
+    footText:{
+        marginTop:70,
+        marginBottom:20,
+        alignSelf:'center'
+    }
 })
 
 export default Styles;

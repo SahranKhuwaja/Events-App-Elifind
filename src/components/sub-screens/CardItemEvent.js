@@ -18,7 +18,7 @@ const CardItemEvent = (props) => {
         </Left>
       </CardItem>
       <CardItem cardBody>
-        <Image source={require('../../assets/images/event-bg.png')} style={{ height: 200, width: null, flex: 1 }} />
+        <Image source={require('../../assets/images/event.png')} style={{ height: 200, width: null, flex: 1 }} />
       </CardItem>
       <CardItem>
         <Left>
@@ -26,7 +26,7 @@ const CardItemEvent = (props) => {
         </Left>
         <Body />
         <Right>
-           <Button transparent>
+           <Button transparent onPress={props.open.bind(this,props.item._id)}>
              <Text>Open</Text>
              <Icon name="chevron-right" type="FontAwesome5"></Icon>
            </Button>

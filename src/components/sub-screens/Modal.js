@@ -14,15 +14,17 @@ const ModalView = (props)=>{
           <View style={Styles.modalView}>
             <Header style={Styles.modalHeader}>
                 <Body style={Styles.modalHeaderBody}>
-                    <Text style={Styles.modalHeadText}>Upload Profile Picture</Text>
+                <Text style={Styles.modalHeadText}>{props.title}</Text>
                 </Body>
             </Header>
             <Content>
-              <Item style={Styles.modalItem}>
+              {!props.media?
+                <Item style={Styles.modalItem}>
                   <TouchableOpacity onPress={props.upload.bind(this,'CAMERA')}>
                   <Text style={Styles.itemText}>  <Icon name="camera" style={Styles.itemIcon}></Icon>  Open camera</Text>
                   </TouchableOpacity>
-              </Item>
+                 </Item>
+              :null}
               <Item style={{...Styles.modalItem,...Styles.modalItem2}}>
                   <TouchableOpacity onPress={props.upload}>
                   <Text style={Styles.itemText}><Icon name="images" style={Styles.itemIcon}></Icon>  Open gallery</Text>

@@ -3,7 +3,7 @@ import { isEqual } from 'lodash';
 import axios from 'axios';
 import Header from '../sub-screens/Header';
 import Loading from '../sub-screens/Loading';
-import { Container, View, Content, Footer, Button,Text } from 'native-base';
+import { Container, View, Content, Footer, Button, Text } from 'native-base';
 import { ScrollView } from 'react-native';
 import LoadFonts from '../sub-screens/LoadFonts';
 import ProfileTop from '../sub-screens/ProfileTop';
@@ -11,6 +11,7 @@ import ProfileBody from '../sub-screens/ProfileBody';
 import Modal from '../sub-screens/Modal';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
+
 import { Buffer } from 'buffer';
 
 // GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;
@@ -35,14 +36,14 @@ export default class Profile extends Component {
     shouldComponentUpdate = async (nextProps, nextState) => {
 
         return (!isEqual(this.state.user, nextState.user)) || (!isEqual(this.state.uri, nextState.uri))
-               ||(!isEqual(this.state.user,this.props.route.params.user))
+            || (!isEqual(this.state.user, this.props.route.params.user))
 
 
     }
 
 
     componentDidMount = async () => {
-
+    
         await LoadFonts();
         const user = await this.getUserData();
         this.setState({
@@ -59,7 +60,7 @@ export default class Profile extends Component {
         if (this.props.route.params) {
             return this.props.route.params.user
         } else {
-            const data = await axios.get('http://192.168.8.103:3000/User/Profile');
+            const data = await axios.get('https://events-app-elifind.herokuapp.com/User/Profile');
             if (data.data.user.Dp !== undefined) {
 
                 data.data.user.Dp = await Buffer.from(data.data.user.Dp).toString('base64')
@@ -149,7 +150,7 @@ export default class Profile extends Component {
             type: `image/${fileType}`
         });
 
-        const request = await axios.post('http://192.168.8.100:3000/User/Upload/Dp', data, {
+        const request = await axios.post('https://events-app-elifind.herokuapp.com/User/Upload/Dp', data, {
 
             headers: {
                 Accept: 'application/json',
@@ -172,20 +173,18 @@ export default class Profile extends Component {
     }
 
     render() {
-       
+
         if (this.state.ready) {
             return (
 
 
                 <Container>
                     <Header toggle={this.toggleDrawer} title='Profile' />
-               
-                    <ProfileTop uploadDp={this.uploadDp} dp={this.state.user.Dp} />
-                
-                    <ProfileBody user={this.state.user} />
-               
-                    <Modal visible={this.state.visible} toggleModal={this.toggleModal} upload={this.upload} />
-
+                    <Content>
+                        <ProfileTop uploadDp={this.uploadDp} dp={this.state.user.Dp} />
+                        <ProfileBody user={this.state.user} />
+                    </Content>
+                    <Modal visible={this.state.visible} toggleModal={this.toggleModal} upload={this.upload} title="Upload Profile Picture" />
                 </Container>
 
 

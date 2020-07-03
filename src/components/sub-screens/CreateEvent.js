@@ -1,10 +1,11 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { Content, Text, Item, Input, Icon, Textarea, Picker, Button,View } from 'native-base';
+import { Content, Text, Item, Input, Icon, Textarea, Picker, Button, View } from 'native-base';
 import CalendarStrip from 'react-native-calendar-strip';
 import Styles from '../../styles/Events';
 import moment from 'moment';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import Loading from './Loading';
 
 const CreateEvent = (props) => {
 
@@ -22,19 +23,19 @@ const CreateEvent = (props) => {
             <Image source={require('../../assets/images/createEvent.png')}
                 style={Styles.image}></Image>
 
-                 {props.errors.length!==0?
-                <View style={Styles.error}> 
-                   {props.errors.map((e,i)=>{
-                     
-                   return  <Text style={Styles.errorText} key={Math.random() + i}>* {e.error}</Text>
+            {props.errors.length !== 0 ?
+                <View style={Styles.error}>
+                    {props.errors.map((e, i) => {
 
-                   })
-                   
-                   }
-                  
+                        return <Text style={Styles.errorText} key={Math.random() + i}>* {e.error}</Text>
+
+                    })
+
+                    }
+
                 </View>
                 : null
-                }
+            }
             <CalendarStrip
                 scrollable
                 daySelectionAnimation={{ type: 'border', borderWidth: 1, duration: 1, borderHighlightColor: 'white' }}
@@ -101,7 +102,7 @@ const CreateEvent = (props) => {
                     selectedValue={props.event.Category}
                     iosHeader="Event Category"
                     iosIcon={<Icon name="arrow-down"
-                    
+
                     />}
                 >
                     {
@@ -113,6 +114,10 @@ const CreateEvent = (props) => {
                 </Picker>
             </Item>
             <Item style={Styles.inputItem}>
+                <Icon name="map-marker-alt" type="FontAwesome5" style={Styles.icon}></Icon>
+                <Input placeholder="Location (only place name)" style={Styles.inputText} onChangeText={props.setLocation}></Input>
+            </Item>
+            <Item style={Styles.inputItem}>
                 <Icon name="information-circle-outline" type="Ionicons" style={Styles.textAreaIcon}></Icon>
                 <Textarea placeholder="Event Description" style={Styles.textAreaText} onChangeText={props.setDescription}></Textarea>
             </Item>
@@ -120,6 +125,7 @@ const CreateEvent = (props) => {
             <Button primary style={Styles.createBtn} onPress={props.schedule}>
                 <Text>Schedule</Text>
             </Button>
+            {props.load?<Loading />:null}
 
 
         </Content>

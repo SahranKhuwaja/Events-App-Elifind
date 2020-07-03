@@ -1,13 +1,14 @@
 import { StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
     
-    
-    cover:{
-        width:'100%',
-        height:'50%',
+    coverView:{
         flexDirection:'column',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+    },
+    cover:{
+        width:'100%',
+        height:200,
     },
     dp:{
         alignSelf:'center',
@@ -15,17 +16,18 @@ const styles = StyleSheet.create({
         width:150,
         borderRadius:100,
         borderWidth:2,
-        borderColor:'white'
-        
+        borderColor:'white',
+        marginTop:-80,
     },
     upload:{
         marginTop:-32,
-        color:'white'
+        color:'white',
+       
     },
     name:{
         fontSize:30,
         fontWeight:'bold',
-        marginTop:15,
+        marginTop:25,
         alignSelf:'center'
     },
     view:{
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
         
     },
     content:{
-        marginTop:-120,
+        marginTop:-30,
         padding:10
     },
     card:{

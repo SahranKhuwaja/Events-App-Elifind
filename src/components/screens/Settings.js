@@ -73,7 +73,7 @@ export default class Settings extends Component {
     if (this.props.route.params) {
       return this.props.route.params.user
     } else {
-      const data = await axios.get('http://192.168.8.103:3000/User/Profile');
+      const data = await axios.get('https://events-app-elifind.herokuapp.com/User/Profile');
       if (data.data.user.Dp !== undefined) {
 
         data.data.user.Dp = await Buffer.from(data.data.user.Dp).toString('base64')
@@ -267,10 +267,9 @@ export default class Settings extends Component {
   submitForm = async () => {
 
     this.setLoading()
-    const request = await axios.put('http://192.168.8.102:3000/User/Update', {...this.state.user,Dp:undefined});
+    const request = await axios.put('https://events-app-elifind.herokuapp.com/User/Update', {...this.state.user,Dp:undefined});
     await this.setLoading();
     if (request.data===true) {
-      alert(request.data)
        await this.updateParams()
        await this.setSettings('Settings','Settings')
     } else {
@@ -293,6 +292,7 @@ export default class Settings extends Component {
     this.props.navigation.setParams({
       user:await this.state.user
     })
+   
     
    
   }
@@ -305,7 +305,7 @@ export default class Settings extends Component {
 
   changePassword = async()=>{
     this.setLoading()
-    const request = await axios.put('http://192.168.8.102:3000/User/Update/Password', 
+    const request = await axios.put('https://events-app-elifind.herokuapp.com/User/Update/Password', 
     {Password:this.state.user.Password,NewPassword:this.state.user.NewPassword});
     await this.setLoading();
     if (request.data===true) {

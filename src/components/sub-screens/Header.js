@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Title, Left, Icon, Right, Button, Body } from 'native-base';
+import { Header, Title, Left, Icon, Right, Button, Body, Text } from 'native-base';
 import Styles from '../../styles/Header'
 
 const ProfileHeader = (props) => {
@@ -17,7 +17,7 @@ const ProfileHeader = (props) => {
                         </Button>
 
                         :
-                        props.create ?
+                        props.back ?
                             <Button
                                 transparent
                                 onPress={props.setSettings.bind(this, 'Events', 'Events', true)}>
@@ -43,7 +43,7 @@ const ProfileHeader = (props) => {
                         <Icon name="checkmark" style={Styles.headerIcon} />
                     </Button>
 
-                    :
+                :
                     null
                 }
             </Right>
